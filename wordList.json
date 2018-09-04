@@ -1,5 +1,5 @@
 {
-	"rWords":[
+	"rWords": [
 		"Reluctant",
 		"Riotous",
 		"Risky",
@@ -29,10 +29,13 @@
 		"Replusive",
 		"Radical",
 		"Recondite",
-		"Resentful"
+		"Resentful",
+		"Rendered",
+		"Reliable",
+		"Resplendant"
 	],
 
-	"bWords":[
+	"bWords": [
 		"Brohoof",
 		"Bobcat",
 		"Boil",
@@ -59,6 +62,11 @@
 		"Bottlemonger",
 		"Bloat",
 		"Blastmaster",
-		"Bamboozler"
+		"Bamboozler",
+		"Brit",
+		"Blockhead",
+		"Blitzer",
+		"Baron",
+		"Boxtrotter"
 	]
 }
