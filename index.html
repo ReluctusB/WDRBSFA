@@ -4,10 +4,21 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>WDRBSFA?</title>
-		<script type="module">
-			import * as data from "./wordList.json"
-			const wordListR = data.rWords;
-			const wordListB = data.bWords;
+		<script>
+
+			function loadJSON(callback) { 
+			console.log("Hello?");  
+			    var xobj = new XMLHttpRequest();
+			        xobj.overrideMimeType("application/json");
+			    xobj.open('GET', 'wordList.json', false); // Replace 'my_data' with the path to your file
+			    xobj.onreadystatechange = function () {
+			          if (xobj.readyState == 4 && xobj.status == "200") {
+			            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+			            callback(JSON.parse(xobj.responseText));
+			          }
+			    };
+			    xobj.send(null);  
+			}
 
 			function selectRandomWord(wordList) {
 				const max = wordList.length - 1;
@@ -15,13 +26,19 @@
 			}
 
 			function rollName() {
-				const outString = selectRandomWord(wordListR) + " " + selectRandomWord(wordListB);
-				document.getElementById("RBOut").innerText = outString;
-			}
+				console.log("Anyone?")
+				loadJSON(response => {
+					const wordListR = response.rWords;
+					const wordListB = response.bWords;
+					const outString = selectRandomWord(wordListR) + " " + selectRandomWord(wordListB);
+					document.getElementById("RBOut").innerText = outString;
+				});
+			}			
 		</script>
 	</head>
 	<body>
 		<h2>What Does RB Stand For, Anyway?</h2>
-		<h1 id="RBOut" onload="rollName()"></h1>
+		<h1 id="RBOut"></h1>
+		<script>rollName();</script>
 	</body>
 </html>
