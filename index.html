@@ -11,26 +11,20 @@
 			function loadJSON(callback) { 
 			    const xobj = new XMLHttpRequest();
 			    xobj.overrideMimeType("application/json");
-			    xobj.open('GET', 'wordList.json', false); // Replace 'my_data' with the path to your file
-			    xobj.onreadystatechange = function () {
-			          if (xobj.readyState == 4 && xobj.status == "200") {
-			            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-			            callback(JSON.parse(xobj.responseText));
-			          }
+			    xobj.open('GET', 'wordList.json', false);
+			    xobj.onreadystatechange = () => {
+		        	if (xobj.readyState == 4 && xobj.status == "200") {
+		          		callback(JSON.parse(xobj.responseText));
+		          	}
 			    };
 			    xobj.send(null);
-			}
-
-			function selectRandomWord(wordList) {
-				const max = wordList.length - 1;
-				return wordList[Math.floor(Math.random() * (max + 1))];
 			}
 
 			function getName() {
 				if (!nameObject) {
 					loadJSON(response => {
 						nameObject = response;
-						rollname(response);
+						rollName(response);
 					});
 				} else {
 					rollName(nameObject);
@@ -39,10 +33,16 @@
 			}
 
 			function rollName(response) {
+
+				function selectRandomWord(wordList) {
+					const max = wordList.length - 1;
+					return wordList[Math.floor(Math.random() * (max + 1))];
+				}
+
 				const wordListR = response.rWords;
-					const wordListB = response.bWords;
-					const outString = selectRandomWord(wordListR) + " " + selectRandomWord(wordListB);
-					document.getElementById("RBOut").innerText = outString;
+				const wordListB = response.bWords;
+				const outString = selectRandomWord(wordListR) + " " + selectRandomWord(wordListB);
+				document.getElementById("RBOut").innerText = outString;
 			}
 
 		</script>
@@ -50,7 +50,7 @@
 	<body>
 		<h1 style="text-align:center">What Does RB Stand For, Anyway?</h1>
 		<h2 style="text-align:center" id="RBOut"></h1>
-		<button onclick="rollName(nameObject)">Re-roll</button>
+		<button style="text-align:center" onclick="rollName(nameObject)">Re-roll</button>
 		<script>getName();</script>
 	</body>
 </html>
