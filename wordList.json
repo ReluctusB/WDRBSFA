@@ -64,7 +64,8 @@
 		"Reintegrated",
 		"Rough",
 		"Rusty",
-		"Ripe"
+		"Ripe",
+		"Reticulating"
 	],
 
 	"bWords": [
@@ -131,6 +132,7 @@
 		"Baguette",
 		"Battlestation",
 		"Beans",
-		"Bargains"
+		"Bargains",
+		"Booty"
 	]
 }
